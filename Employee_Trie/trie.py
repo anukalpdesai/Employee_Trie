@@ -20,7 +20,7 @@ class Trie:
     def __init__(self):
         self.root = Trie.TrieNode(None)
 
-    def insert(self, word):
+    def insert(self, word, user_data=None):
         root = self.root
 
         logging.debug('word = %s', word)
@@ -31,6 +31,7 @@ class Trie:
                 root.child[char] = Trie.TrieNode(char)
             root = root.child[char]
         root.is_word = True
+        root.user_data = user_data
 
         logging.debug('char = %s', root.val)
         logging.debug('is_word = %s', root.is_word)
@@ -45,7 +46,7 @@ class Trie:
             if root.child.get(char, None) is None:
                 return False
             root = root.child[char]
-        return root.is_word
+        return root.is_word, root.user_data
 
 
 
