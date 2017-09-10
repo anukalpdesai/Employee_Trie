@@ -9,12 +9,13 @@ class Trie:
 
     class TrieNode:
 
-        __slots__ = 'val', 'is_word', 'child'
+        __slots__ = 'val', 'is_word', 'child', 'user_data'
 
-        def __init__(self, val, is_word=False):
+        def __init__(self, val, is_word=False, user_data=None):
             self.val = val
             self.is_word = is_word
             self.child = dict()
+            self.user_data = user_data
 
     def __init__(self):
         self.root = Trie.TrieNode(None)
