@@ -6,7 +6,7 @@ The employee data is taken from [datacharmer testdb](https://github.com/datachar
 Code:
 ```
 emp_trie = Trie()
+emp_trie.insert('johnd', 11111)
 emp_trie.insert('a')
-emp_trie.insert('hello', 1111)
 ```
 ![Alt text](Employee_Trie/Data/Employee_Trie.png?raw=true "Employee Trie Objects")
