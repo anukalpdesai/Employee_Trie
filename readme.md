@@ -9,4 +9,4 @@ emp_trie = Trie()
 emp_trie.insert('johnd', 11111)
 emp_trie.insert('a')
 ```
-![Alt text](Employee_Trie/Data/Employee_Trie.png?raw=true "Employee Trie Objects")
+![Alt text](Employee_Trie/Data/emp_trie.png?raw=true "Employee Trie Objects")
