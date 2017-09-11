@@ -1,4 +1,3 @@
 # Employee Trie
-Creates a trie from name where name is of form firstname.lastname of employee.
-Supports searching using same format. Name is converted to lowercase before
-inserting.
+Python program to insert and search employees using a combination of first and last names in a Trie.
+The employee data is taken from [datacharmer testdb](https://github.com/datacharmer/test_db/).
