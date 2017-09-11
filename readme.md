@@ -7,6 +7,6 @@ Code:
 ```
 emp_trie = Trie()
 emp_trie.insert('a')
-emp_trie.insert('hello')
+emp_trie.insert('hello', 1111)
 ```
 ![Alt text](Employee_Trie/Data/Employee_Trie.png?raw=true "Employee Trie Objects")
