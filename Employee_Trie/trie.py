@@ -48,7 +48,3 @@ class Trie:
             root = root.child[char]
         return root.is_word, root.user_data
 
-
-
-
-
