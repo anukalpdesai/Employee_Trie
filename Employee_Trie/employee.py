@@ -39,7 +39,7 @@ def main():
         emp1 = emp_dict[emp_id]
         print('Employee Name : ' + emp1.first_name)
         emp2 = emp_dict[emp1.manager_id]
-        print('Manemp2.first_name)
+        print('Manager Name : ', emp2.first_name)
 
 
 if __name__ == '__main__':
