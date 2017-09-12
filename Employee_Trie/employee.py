@@ -1,4 +1,6 @@
 import logging
+import csv
+from collections import namedtuple
 from trie import Trie
 
 
@@ -6,40 +8,26 @@ logging.basicConfig(level=logging.DEBUG,
                     format="%(funcName)s:%(lineno)d:%(message)s")
 
 
-class Employee:
-
-    def __init__(self, employee_id, birth_date, first_name, last_name, gender,
-                 joining_date, manager_id):
-
-        self.employee_id = employee_id
-        self.birth_date = birth_date
-        self.first_name = first_name
-        self.last_name = last_name
-        self.gender = gender
-        self.joining_date = joining_date
-        self.manager_id = manager_id
-
-
 def main():
-    emp_dict = {}
+    csv_filename = r"./Data/load_employees_dump.txt"
     emp_trie = Trie()
+    emp_dict = {}
+    with open(csv_filename, "r") as fd:
+        dict_reader = csv.DictReader(fd, ['employee_id', 'birth_date', 'first_name',
+                                          'last_name', 'gender', 'joining_date',
+                                          'manager_id'])
+        for record in dict_reader:
+            emp_id = record['employee_id']
+            name = record['first_name'] + '.' + record['last_name']
+            mgr_id = record['manager_id']
+            emp_dict[emp_id] = (emp_id, name, mgr_id)
+            emp_trie.insert(name, emp_id)
 
-    try:
-        fd = open(r"./Data/load_employees_dump.txt", "r")
-    except IOError as e:
-        logging.error("Unable to open file: %s", e)
-    else:
-        for line in fd:
-            emp_id, dob, fname, lname, gender, doj, mgr_id = line.rstrip('\r\n').split(',')
-            emp_dict[emp_id] = Employee(emp_id, dob, fname, lname, gender, doj, mgr_id)
-            emp_trie.insert(fname+'.'+lname, emp_id)
-
-        status, emp_id = emp_trie.search('Cristinel.Bouloucos')
-        logging.info('status = %s, id = %s', status, emp_id)
-        emp1 = emp_dict[emp_id]
-        print('Employee Name : ' + emp1.first_name)
-        emp2 = emp_dict[emp1.manager_id]
-        print('Manager Name : ', emp2.first_name)
+    status, emp_id = emp_trie.search('Cristinel.Bouloucos')
+    print(emp_dict[emp_id])
+    emp_id, name, mgr_id = emp_dict[emp_id]
+    print('Employee Name: {} and Manager Name: {}'.format(name,
+                                                          emp_dict[mgr_id][1]))
 
 
 if __name__ == '__main__':
